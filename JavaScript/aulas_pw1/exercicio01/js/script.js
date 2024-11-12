@@ -1,19 +1,35 @@
-const nomes = ['Ana', 'Carla', 'Trísia'];
+const listaDeUsuarios = [
+    {nome: "João", idade: 30, cpf: "12345"},
+    {nome: "Maria", idade: 25, cpf: "67890"},
+    {nome: "José", idade: 35, cpf: "24680"}
+];
 
-const listaNomesElement = document.createElement('ul');
-document.body.appendChild(listaNomesElement);
 
-for (let nome of nomes) {
-    inserirNomeNaLista(nome);
+const listaUsuariosElement = document.createElement('ul');
+document.body.appendChild(listaUsuariosElement);
+
+for (let usuario of listaDeUsuarios) {
+    inserirUsuarioNaLista(usuario);
 }
 
-function inserirNome() {
-    const inputNomeElement = document.querySelector('#nome');
-    inserirNomeNaLista(inputNomeElement.value);
+function inserirUsuario() {
+    const inputUsuarioNome = document.querySelector('#nome');
+    const inputUsuarioIdade = document.querySelector('#idade');
+    const inputUsuarioCpf = document.querySelector('#cpf');
+
+    nome = inputUsuarioNome.value;
+    idade = inputUsuarioIdade.value;
+    cpf = inputUsuarioCpf.value;
+
+    const inputUsuarioElement = { nome, idade, cpf }
+
+
+    inserirUsuarioNaLista(inputUsuarioElement)
 }
 
-function inserirNomeNaLista(nome) {
+function inserirUsuarioNaLista(usuario) {
     const liElement = document.createElement('li');
+
     const botaoRemoverElement = document.createElement('button');
     botaoRemoverElement.textContent = 'X';
     botaoRemoverElement.addEventListener('click', (event) => {
@@ -21,19 +37,25 @@ function inserirNomeNaLista(nome) {
     });
 
     const spanElement = document.createElement('span');
-    spanElement.textContent = nome + ' ';
+    spanElement.textContent = usuario;
 
-    spanElement.addEventListener('click', event => {
+    spanElement.addEventListener('click', (event) => {
+
         const inputElement = document.createElement('input');
-        inputElement.value = nome;
+
+        inputElement.value = usuario;
+
         liElement.appendChild(inputElement);
+
         spanElement.remove();
     });
 
     liElement.appendChild(spanElement);
     liElement.appendChild(botaoRemoverElement);
 
-    listaNomesElement.appendChild(liElement);
+    listaUsuariosElement.appendChild(liElement);
 }
+
+
 
 
