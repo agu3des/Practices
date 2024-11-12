@@ -17,14 +17,14 @@ function inserirUsuario() {
     const inputUsuarioIdade = document.querySelector('#idade');
     const inputUsuarioCpf = document.querySelector('#cpf');
 
-    nome = inputUsuarioNome.value;
-    idade = inputUsuarioIdade.value;
-    cpf = inputUsuarioCpf.value;
+    let nome = inputUsuarioNome.value;
+    let idade = inputUsuarioIdade.value;
+    let cpf = inputUsuarioCpf.value;
 
-    const inputUsuarioElement = { nome, idade, cpf }
+    const inputUsuarioElement = { nome, idade, cpf };
 
 
-    inserirUsuarioNaLista(inputUsuarioElement)
+    inserirUsuarioNaLista(inputUsuarioElement);
 }
 
 function inserirUsuarioNaLista(usuario) {
@@ -37,13 +37,18 @@ function inserirUsuarioNaLista(usuario) {
     });
 
     const spanElement = document.createElement('span');
-    spanElement.textContent = usuario;
+
+//    let usuarioStr = JSON.stringify(usuario);
+
+    let usuarioStr = `Nome: ${usuario.nome}    -    Idade: ${usuario.idade}    -    CPF: ${usuario.cpf}  `;
+
+    spanElement.textContent = usuarioStr;
 
     spanElement.addEventListener('click', (event) => {
 
         const inputElement = document.createElement('input');
 
-        inputElement.value = usuario;
+        inputElement.value = usuarioStr;
 
         liElement.appendChild(inputElement);
 
