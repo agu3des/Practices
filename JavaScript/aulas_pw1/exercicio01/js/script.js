@@ -37,12 +37,11 @@ function inserirUsuarioNaLista(usuario) {
     });
 
     const spanElement = document.createElement('span');
+    spanElement.innerHTML = `Nome: ${usuario.nome} <br> Idade: ${usuario.idade} <br> CPF: ${usuario.cpf} <br>`;
 
 //    let usuarioStr = JSON.stringify(usuario);
-
-    let usuarioStr = `Nome: ${usuario.nome}    -    Idade: ${usuario.idade}    -    CPF: ${usuario.cpf}  `;
-
-    spanElement.textContent = usuarioStr;
+//    spanElement.textContent = usuarioStr;
+//    let usuarioStr = `Nome: ${usuario.nome} <br> Idade: ${usuario.idade} <br> CPF: ${usuario.cpf}  `;
 
     spanElement.addEventListener('click', (event) => {
 

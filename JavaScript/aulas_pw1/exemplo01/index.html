@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>IFPB</h1>
+  
+  <h1>Lista de Usuário</h1>
+  <form class="formulario">
+    <input id="nome" placeholder="Nome">
+    <input id="idade" placeholder="Idade">
+    <input id="cpf" placeholder="Cpf">
+    <button onclick="inserirUsuario()">Inserir</button>
 
-    <script src="js/script.js"></script>
-    <input id="name" placeholder="Name">
-    <button onclick="inputName()">Input</button>
+    <ul>
+      <li>Nome: Marta | Idade: 45 | CPF: 92468</li>
+      <li>Nome: Leyde | Idade: 36 | CPF: 47523</li>
+      <li>Nome: Marcos | Idade: 14 | CPF: 14876</li>
+    </ul>
+  </form>
+
+
+  <script src="js/script.js"></script>
+
+
 </body>
 </html>
