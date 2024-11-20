@@ -1,0 +1,26 @@
+== Objetivo ==
+Alterar o código do sistema acadêmico visto em sala de aula para gerenciar disciplinas. Use como base o código https://github.com/gugawag/js-academico-2023.2/releases/tag/v1-MVC
+
+== Passos ==
+
+Ponto de partida do seu código, baseado no código apresentado em sala: https://github.com/gugawag/js-academico-2023.2/releases/tag/v1-MVC
+Agora é sua vez de alterar o sistema bancário. Precisamos gerenciar disciplinas. Para isso, você deve:
+
+
+0. Baixar o código acima e abrir o html no navegador para executar a aplicação do jeito que deixamos em sala de aula. Pratique acrescentando alunos e vendo se funciona;
+1. Altere o código atual para inserir a lógica de negócio: não permitir inserir aluno menor de idade. Em qual camada deveria ter essa alteração? 🤔  OK
+
+2. Desenvolver a classe Disciplina, contendo como atributos: código, nome e um array de alunos (da classe Aluno) e seus respectivos métodos get e set;
+
+3. Desenvolver as classes do padrão MVC para Disciplina, assim como fizemos para Aluno: classes DisciplinaRepositorio, DisciplinaServico, DisciplinaControlador. Além dos métodos de CRUD (inserir, pesquisar, atualizar e remover), similar a como foi feito com Aluno, você deve criar o método inserirAlunoNaDisciplina, que receberá um aluno e o colocará no array de alunos da Disciplina.
+
+4. Criar o html disciplina.html, que terá os inputs para inserir uma nova disciplina, e inserirá as referências para os arquivos .js necessários.
+
+== O que entregar? ==
+1. prints: 
+do código seu index.html; 
+da classe Disciplina; 
+da classe AlunoService; 
+das classes DisciplinaRepositorio, DisciplinaServico, DisciplinaControlador
+do seu navegador com seu código executando, com alguns alunos cadastrados
+2. O link do github de seu projeto
