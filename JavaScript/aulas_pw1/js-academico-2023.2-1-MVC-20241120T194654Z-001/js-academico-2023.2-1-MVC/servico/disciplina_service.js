@@ -1,4 +1,4 @@
-import 'modelo/aluno.js';
+//import 'modelo/aluno.js';
 
 class DisciplinaService {
     constructor() {
@@ -26,6 +26,7 @@ class DisciplinaService {
     }
 
     inserirAlunoNaDisciplina(nome, idade, matricula, disciplina) {
-        const aluno = new Aluno()
+        const aluno = new Aluno(nome, idade, matricula);
+        this.repositorio.inserirAlunoNaDisciplina(aluno+this.pesquisarPorCodigo(disciplina));
     }
 }

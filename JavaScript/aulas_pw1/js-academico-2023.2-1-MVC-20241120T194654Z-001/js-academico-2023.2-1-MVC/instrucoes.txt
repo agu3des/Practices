@@ -8,6 +8,7 @@ Agora é sua vez de alterar o sistema bancário. Precisamos gerenciar disciplina
 
 
 0. Baixar o código acima e abrir o html no navegador para executar a aplicação do jeito que deixamos em sala de aula. Pratique acrescentando alunos e vendo se funciona;
+
 1. Altere o código atual para inserir a lógica de negócio: não permitir inserir aluno menor de idade. Em qual camada deveria ter essa alteração? 🤔  OK
 
 2. Desenvolver a classe Disciplina, contendo como atributos: código, nome e um array de alunos (da classe Aluno) e seus respectivos métodos get e set;

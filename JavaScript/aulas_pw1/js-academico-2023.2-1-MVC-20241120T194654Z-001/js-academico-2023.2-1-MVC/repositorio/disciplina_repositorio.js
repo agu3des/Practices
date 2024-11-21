@@ -2,6 +2,7 @@ class DisciplinaRepositorio {
     
     constructor() {
         this.disciplinas = [];
+        this.alunos = [];
     }
 
     inserir(disciplina) {
@@ -18,6 +19,11 @@ class DisciplinaRepositorio {
 
     listar() {
         return this.disciplinas;
+    }
+
+    
+    inserirAlunoNaDisciplina(aluno) {
+        this.alunos.push(aluno);
     }
 
  /*   atualizar(codigo, novoCodigo, novoNome) {
