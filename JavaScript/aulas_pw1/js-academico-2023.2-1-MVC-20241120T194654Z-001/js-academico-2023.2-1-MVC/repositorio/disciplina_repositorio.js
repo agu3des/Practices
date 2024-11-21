@@ -1,19 +1,21 @@
 class DisciplinaRepositorio {
-    
     constructor() {
         this.disciplinas = [];
-        this.alunos = [];
+        this.alunosPorDisciplina = {};  
     }
 
     inserir(disciplina) {
         this.disciplinas.push(disciplina);
+        this.alunosPorDisciplina[disciplina.codigo] = [];  
     }
 
     remover(codigo) {
         const indxDisciplinaARemover = this.disciplinas.findIndex(disciplina => disciplina.codigo === codigo);
-
-        if(indxDisciplinaARemover > -1) {
+        if (indxDisciplinaARemover > -1) {
             this.disciplinas.splice(indxDisciplinaARemover, 1);
+            delete this.alunosPorDisciplina[codigo]; 
+        } else {
+            throw new Error('Disciplina não encontrada!');
         }
     }
 
@@ -21,22 +23,14 @@ class DisciplinaRepositorio {
         return this.disciplinas;
     }
 
-    
-    inserirAlunoNaDisciplina(aluno) {
-        this.alunos.push(aluno);
+    inserirAlunoNaDisciplina(aluno, codigoDisciplina) {
+        if (!this.alunosPorDisciplina[codigoDisciplina]) {
+            throw new Error('Disciplina não encontrada!');
+        }
+        this.alunosPorDisciplina[codigoDisciplina].push(aluno);
     }
 
- /*   atualizar(codigo, novoCodigo, novoNome) {
-        
-        const disciplina =  this.repositorio.listar().filter(disciplina => disciplina.codigo === codigo); 
-        const disciplinaAntiga = disciplina;
-
-        setCodigo(novoCodigo);
-        disciplina.setNome(novoNome);
-
-        this.inserir(disciplina);
-        this.remover(disciplinaAntiga);
+    listarAlunosDaDisciplina(codigoDisciplina) {
+        return this.alunosPorDisciplina[codigoDisciplina] || [];
     }
-*/
-
 }

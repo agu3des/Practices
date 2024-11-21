@@ -8,11 +8,16 @@ class AlunoControlador {
         const nomeElemento = document.querySelector("#nome");
         const idadeElemento = document.querySelector("#idade");
         const matriculoElemento = document.querySelector("#matricula");
-        const alunoInserido = this.servico.inserir(nomeElemento.value, Number(idadeElemento.value),
-            matriculoElemento.value);
-        const listaAlunosElemento = document.querySelector("#listaAlunos");
-        if (alunoInserido) {
-            this.inserirAlunoNoHtml(alunoInserido, listaAlunosElemento);
+        
+        try {
+            const alunoInserido = this.servico.inserir(nomeElemento.value, Number(idadeElemento.value),
+                matriculoElemento.value);
+            const listaAlunosElemento = document.querySelector("#listaAlunos");
+            if (alunoInserido) {
+                this.inserirAlunoNoHtml(alunoInserido, listaAlunosElemento);
+            }
+        } catch (error) {
+            this.exibirMensagemDeErro(error.message);
         }
     }
 
@@ -28,4 +33,10 @@ class AlunoControlador {
         alunosMenores.forEach(menor => this.inserirAlunoNoHtml(menor, listaAlunosMenoresElemento));
     }
 
+    exibirMensagemDeErro(mensagem) {
+        const erroElemento = document.createElement("p");
+        erroElemento.style.color = "red";
+        erroElemento.textContent = `Erro: ${mensagem}`;
+        document.body.appendChild(erroElemento);
+    }
 }

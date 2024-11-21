@@ -10,10 +10,18 @@
     Nome:<input id="nome"><br>
 
     <button onclick="controladorDisciplina.inserir()">Cadastrar</button>
+    
+    <ol id="listaDisciplinas"></ol>
+    
+    <br>
+    <p>Insira um aluno na disciplina desejada:</p>
+    Nome:<input id="nomeAluno"><br>
+    Idade:<input id="idadeAluno" type="number"><br>
+    Matrícula:<input id="matriculaAluno"><br>
+    Código da disciplina:<input id="disciplina"><br>
 
-    <ol id="listaDisciplinas">
-    </ol>
-   
+    <button onclick="controladorDisciplina.inserirAlunoNaDisciplina()">Inserir Aluno</button>
+    
     <script src="modelo/disciplina.js"></script>
     <script src="repositorio/disciplina_repositorio.js"></script>
     <script src="servico/disciplina_service.js"></script>

@@ -8,7 +8,7 @@ class AlunoService {
         if (alunoPesquisado.length > 0) {
             throw new Error('Aluno já cadastrado!');
         }
-        if(idade < 18) {
+        if (idade < 18) {
             throw new Error('Aluno menor de idade!');
         }
         const alunoNovo = new Aluno(nome, idade, matricula);

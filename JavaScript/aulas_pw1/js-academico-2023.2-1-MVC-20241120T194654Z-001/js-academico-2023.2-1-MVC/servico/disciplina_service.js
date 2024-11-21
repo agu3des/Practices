@@ -1,4 +1,4 @@
-//import 'modelo/aluno.js';
+//import Aluno from './modelo/aluno.js';
 
 class DisciplinaService {
     constructor() {
@@ -8,7 +8,7 @@ class DisciplinaService {
     inserir(codigo, nome) {
         const disciplinaPesquisada = this.pesquisarPorCodigo(codigo);
 
-        if(disciplinaPesquisada.length > 0) {
+        if (disciplinaPesquisada.length > 0) {
             throw new Error('Disciplina já existe!');
         }
 
@@ -25,8 +25,16 @@ class DisciplinaService {
         this.repositorio.remover(codigo);
     }
 
-    inserirAlunoNaDisciplina(nome, idade, matricula, disciplina) {
+    inserirAlunoNaDisciplina(nome, idade, matricula, codigoDisciplina) {
         const aluno = new Aluno(nome, idade, matricula);
-        this.repositorio.inserirAlunoNaDisciplina(aluno+this.pesquisarPorCodigo(disciplina));
+        const disciplinasEncontradas = this.pesquisarPorCodigo(codigoDisciplina);
+
+        if (disciplinasEncontradas.length > 0) {
+            const disciplina = disciplinasEncontradas[0];  
+            this.repositorio.inserirAlunoNaDisciplina(aluno);
+            return aluno;  
+        } else {
+            throw new Error('Disciplina não encontrada!');
+        }
     }
 }

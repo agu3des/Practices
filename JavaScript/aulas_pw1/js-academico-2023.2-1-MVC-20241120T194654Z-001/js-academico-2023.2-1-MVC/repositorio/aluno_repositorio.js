@@ -12,6 +12,8 @@ class AlunoRepositorio {
         const indxAlunoARemover = this.alunos.findIndex(aluno => aluno.matricula === matricula);
         if (indxAlunoARemover > -1) {
             this.alunos.splice(indxAlunoARemover, 1);
+        } else {
+            throw new Error('Aluno não encontrado!');
         }
     }
 

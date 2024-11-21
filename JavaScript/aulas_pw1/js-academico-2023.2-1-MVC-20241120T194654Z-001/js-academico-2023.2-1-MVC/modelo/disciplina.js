@@ -14,11 +14,11 @@ class Disciplina {
         return this._nome;
     }
 
-    set setCodigo(novoCodigo) {
+    set codigo(novoCodigo) {
         this._codigo = novoCodigo;
     }
 
-    set setNome(novoNome) {
+    set nome(novoNome) {
         this._nome = novoNome;
     }
 }
