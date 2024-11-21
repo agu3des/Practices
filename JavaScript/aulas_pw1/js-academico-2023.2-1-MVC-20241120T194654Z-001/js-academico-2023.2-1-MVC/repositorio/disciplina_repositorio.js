@@ -1,12 +1,11 @@
 class DisciplinaRepositorio {
     constructor() {
         this.disciplinas = [];
-        this.alunosPorDisciplina = {};  
+        this.alunosPorDisciplina = [];  
     }
 
     inserir(disciplina) {
-        this.disciplinas.push(disciplina);
-        this.alunosPorDisciplina[disciplina.codigo] = [];  
+        this.disciplinas.push(disciplina);  
     }
 
     remover(codigo) {
@@ -24,13 +23,6 @@ class DisciplinaRepositorio {
     }
 
     inserirAlunoNaDisciplina(aluno, codigoDisciplina) {
-        if (!this.alunosPorDisciplina[codigoDisciplina]) {
-            throw new Error('Disciplina não encontrada!');
-        }
-        this.alunosPorDisciplina[codigoDisciplina].push(aluno);
-    }
-
-    listarAlunosDaDisciplina(codigoDisciplina) {
-        return this.alunosPorDisciplina[codigoDisciplina] || [];
+        this.alunosPorDisciplina.push(`${aluno}+${codigoDisciplina}`);
     }
 }

@@ -15,13 +15,16 @@
     
     <br>
     <p>Insira um aluno na disciplina desejada:</p>
-    Nome:<input id="nomeAluno"><br>
-    Idade:<input id="idadeAluno" type="number"><br>
-    Matrícula:<input id="matriculaAluno"><br>
-    Código da disciplina:<input id="disciplina"><br>
+    <label for="nomeAluno">Nome:</label><input id="nomeAluno"><br>
+    <label for="idadeAluno">Idade:</label><input id="idadeAluno" type="number"><br>
+    <label for="matriculaAluno">Matrícula:</label><input id="matriculaAluno"><br>
+    <label for="disciplina">Código da Disciplina:</label><input id="disciplina"><br>
+    
 
     <button onclick="controladorDisciplina.inserirAlunoNaDisciplina()">Inserir Aluno</button>
     
+    <script src="modelo/aluno.js"></script>
+
     <script src="modelo/disciplina.js"></script>
     <script src="repositorio/disciplina_repositorio.js"></script>
     <script src="servico/disciplina_service.js"></script>

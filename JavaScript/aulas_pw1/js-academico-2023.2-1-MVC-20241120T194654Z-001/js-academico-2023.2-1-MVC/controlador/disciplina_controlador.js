@@ -26,16 +26,38 @@ class DisciplinaControlador {
     }
 
     inserirAlunoNaDisciplina() {
+
         const nomeElemento = document.querySelector("#nomeAluno");
         const idadeElemento = document.querySelector("#idadeAluno");
-        const matriculoElemento = document.querySelector("#matriculaAluno");
+        const matriculaElemento = document.querySelector("#matriculaAluno");
         const disciplinaElementoA = document.querySelector("#disciplina");
 
         try {
-            this.servico.inserirAlunoNaDisciplina(nomeElemento.value, Number(idadeElemento.value), matriculoElemento.value, disciplinaElementoA.value);
+            if (!nomeElemento.value || !idadeElemento.value || !matriculaElemento.value || !disciplinaElementoA.value) {
+                throw new Error("Todos os campos devem ser preenchidos corretamente.");
+            }
+
+            const aluno = new Aluno(nomeElemento.value, Number(idadeElemento.value), matriculaElemento.value);
+            const disciplina = this.servico.pesquisarPorCodigo(disciplinaElementoA.value);
+
+            if (!disciplina || disciplina.length === 0) {
+                throw new Error("Disciplina não encontrada!");
+            }
+
+            this.servico.inserirAlunoNaDisciplina(aluno, disciplina);
+
+            this.exibirAlunoNaDisciplina(aluno, disciplina);
+
         } catch (error) {
             this.exibirMensagemDeErro(error.message);
         }
+    }
+
+    exibirAlunoNaDisciplina(aluno, disciplina) {
+        const elementoDestino = document.querySelector("#listaAlunos");
+        const alunoElemento = document.createElement("li");
+        alunoElemento.textContent = `Aluno: ${aluno.nome} - Matrícula: ${aluno.matricula} - Disciplina: ${disciplina.nome}`;
+        elementoDestino.appendChild(alunoElemento);
     }
 
     exibirMensagemDeErro(mensagem) {
