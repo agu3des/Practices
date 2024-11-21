@@ -7,10 +7,10 @@ class DisciplinaControlador {
     inserir() {
         const codigoElemento = document.querySelector("#codigo");
         const nomeElemento = document.querySelector("#nome");
-        const disciplinaInserida = this.servico.inserir(codigoElemento,value, nomeElemento.value);
+        const disciplinaInserida = this.servico.inserir(codigoElemento.value, nomeElemento.value);
         const listaDisciplinasElemento = document.querySelector("#listaDisciplinas");
         if (disciplinaInserida) {
-            this.inserirAlunoNoHtml(disciplinaInserida, listaDisciplinasElemento);
+            this.inserirDisciplinaNoHtml(disciplinaInserida, listaDisciplinasElemento);
         }
     }
 
