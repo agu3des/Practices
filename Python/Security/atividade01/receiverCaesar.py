@@ -1,15 +1,5 @@
-from scapy.all import send, IP, UDP
-from receiverCaesar import caesar  # Importa a função de criptografia de César
+from scapy.all import sniff, UDP
 import sys
-
-def main():
-    m = "Ola Mundo"    
-    key = 10  # Chave de criptografia
-    ciphered_message = caesar(m, key, 0)  # Criptografa a mensagem
-
-    packet = IP(dst='192.168.1.2') / UDP(dport=12345) / ciphered_message
-    packet.show()
-    send(packet)  # Envia o pacote criptografado
 
 def caesar(data, key, mode):
     alphabet = 'abcdefghijklmnopqrstuvwxyz'
@@ -25,6 +15,17 @@ def caesar(data, key, mode):
             # Preserva maiúsculas e minúsculas
             new_data += new_char.upper() if c.isupper() else new_char
     return new_data
+
+def packet_handler(packet):
+    ciphered_message = packet.load.decode()  # Extrai a mensagem criptografada
+    print(f"Mensagem criptografada recebida: {ciphered_message}")
+    
+    key = 10  # A chave que Bob usaria para decifrar
+    plain_message = caesar(ciphered_message, key, 1)  # Descriptografa a mensagem
+    print(f"Mensagem descriptografada: {plain_message}")
+
+def main():
+    sniff(filter="udp port 12345", prn=packet_handler)  # Escuta pacotes UDP na porta 12345
 
 if __name__ == "__main__":
     main()
