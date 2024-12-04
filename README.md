@@ -4,7 +4,6 @@
 
 ## Requisitions
 + `VS Code`
-+ `Python3/Numpy`
 + `R`
 + `NodeJS/Npm`
 
@@ -18,7 +17,6 @@
 | JavaScript | There are javascript practices, ex: array, functions.|
 | Node | There are nodejs practices, ex: uses of modules.|
 | React | There are react practices, ex: first project using nextjs.|
-| Python | There are python practices, ex: decision, repetition, function, semaphore.|
 | R | There are r practices, ex: mean, log.|
 
 
