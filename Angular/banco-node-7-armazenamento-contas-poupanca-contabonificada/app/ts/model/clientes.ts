@@ -4,39 +4,43 @@
 2.3 listar, que devolverá um array de Cliente
 2.4 pesquisar, que receberá o cpf do cliente e devolverá o cliente encontrado (se encontrar) */
 
-class Contas {
+class Clientes {
 
-    private contas: Array<Conta>;
+    private clientes: Array<Cliente>;
 
     constructor() {
-        this.contas = new Array<Conta>();
-        const c1 = new Conta('1', 100);
-        const c2 = new Conta('2', 200);
-        this.contas.push(c1, c2);
+        this.clientes = new Array<Cliente>();
+
+        const conta1 = new Conta('100', 1000);
+        const conta2 = new Conta('200', 2000);
+
+        const cliente1 = new Cliente('João', '100', conta1);
+        const cliente2 = new Cliente('Maria', '200', conta2);
+        this.clientes.push(cliente1, cliente2);
     }
 
-    inserir(conta: Conta): void {
-        this.contas.push(conta);
+    inserir(cliente: Cliente): void {
+        this.clientes.push(cliente);
     }
 
-    remover(numero: string): void {
-        const contaARemover = this.pesquisar(numero);
-        if (contaARemover) {
-            const indiceConta = this.contas.indexOf(contaARemover);
-            if (indiceConta > -1) {
-                this.contas.splice(indiceConta, 1);
+    remover(cpf: string): void {
+        const clienteARemover = this.pesquisar(cpf);
+        if (clienteARemover) {
+            const indiceCliente = this.clientes.indexOf(clienteARemover);
+            if (indiceCliente > -1) {
+                this.clientes.splice(indiceCliente, 1);
             }
         }
     }
 
-    pesquisar(numero: string): Conta {
-        return this.contas.find(
-            conta => conta.numero === numero
+    pesquisar(cpf: string): Cliente {
+        return this.clientes.find(
+            cliente => cliente.cpf === cpf
         );
     }
 
-    listar(): Array<Conta> {
-        return this.contas;
+    listar(): Array<Cliente> {
+        return this.clientes;
     }
 
 }
