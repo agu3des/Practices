@@ -1,11 +1,23 @@
+// Inicializando o ContaController para manipulação de contas
 let contaController = new ContaController();
 contaController.listar();
-const c1 = new Conta('1', 100);
-const p1 = new Poupanca('2', 100);
-const cb1 = new ContaBonificada('3', 0);
-console.log('Conta: ' + c1.saldo);
-p1.atualizarSaldoAniversario();
-console.log('Poupanca: ' + p1.saldo);
-cb1.creditar(100);
-console.log('Conta Bonificada: ' + cb1.saldo);
-//3. Alterar o arquivo app.ts para criar um objeto da classe Clientes e inserir clientes dentro, listar, remover e pesquisar (pode fazer o código diretamente no app.ts e imprimir no console o resultado)
+// Criando contas
+const conta1 = new Conta('400', 100);
+const conta2 = new Conta('500', 1500);
+// Inicializando o ClienteController para manipulação de clientes
+const clienteController = new ClienteController();
+// Criando clientes normais
+const cliente1 = new Cliente('José', '300', conta1);
+const cliente2 = new Cliente('Maria', '301', conta2);
+// Criando um ClienteEspecial e adicionando dependentes
+const clienteEspecial = new ClienteEspecial('Carlos', '400', conta1);
+clienteEspecial.adicionarDependente(cliente1);
+clienteEspecial.adicionarDependente(cliente2);
+// Logando informações no console para validação
+console.log("Informações do Cliente Especial:");
+console.log(clienteEspecial.toString());
+// Listando os dependentes do ClienteEspecial
+console.log("\nLista de Dependentes:");
+clienteEspecial.listarDependentes().forEach(dependente => {
+    console.log(dependente.toString());
+});

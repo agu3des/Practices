@@ -2,59 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clientes</title>
+    <title>Gerenciamento de Clientes</title>
 </head>
 <body>
-    <h1 class="text-center">Clientes</h1>
 
-    <div id="mensagemView"></div>
+<h1 class="text-center">Clientes Bancários</h1>
 
-    <form class="form">
+<div id="mensagemView"></div>
 
-        <div class="form-group">
-            <label for="data">Data de Criação</label>
-            <input type="date" id="data" class="form-control" required autofocus/>
-        </div>
+<form class="form">
 
-        <div class="form-group">
-            <label for="cliente">Cliente</label>
-            <input type="text" min="1" step="1" id="cliente" class="form-control" value="1" required/>
-        </div>
+    <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" class="form-control" required autofocus/>
+    </div>
 
-        <div class="form-group">
-            <label for="nome">Nome</label>
-            <input id="nome" type="text" class="form-control" value="José" required/>
-        </div>
+    <div class="form-group">
+        <label for="cpf">CPF</label>
+        <input type="text" id="cpf" class="form-control" required/>
+    </div>
 
-        <div class="form-group">
-            <label for="cpf">CPF</label>
-            <input id="cpf" type="text" class="form-control" value="12345678900" required/>
-        </div>
+    <div class="form-group">
+        <label for="contaCliente">Conta</label>
+        <input type="text" id="contaCliente" class="form-control" required/>
+    </div>
 
-        <button class="btn btn-primary" type="submit" onclick="clienteController.inserir(event)">Inserir</button>
-    </form>
+    <button class="btn btn-primary" type="submit" onclick="clienteController.inserir(event)">Inserir</button>
 
-    <br><br>
+</form>
 
-    <table>
-        <thead>
-            <tr>
-                <th>DATA DE CRIAÇÃO</th>
-                <th>CLIENTE</th>
-                <th>NOME</th>
-                <th>CPF</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-        <tfoot></tfoot>
-    </table>
+<br>
+<br>
 
-    <script src="js/model/cliente.js"></script>
-    <script src="js/model/clientes.js"></script>
-    <script src="js/model/conta.js"></script>
-    <script src="js/model/cliente-especial.js"></script> <!-- Novo arquivo para ClienteEspecial -->
-    <script src="js/controller/cliente-controller.js"></script>
-    <script src="js/app.js"></script>
+<table border="1">
+    <thead>
+    <tr>
+        <th>NOME</th>
+        <th>CPF</th>
+        <th>CONTA</th>
+        <th>AÇÕES</th>
+    </tr>
+    </thead>
+
+    <tbody id="listaClientes">
+    <!-- Os clientes serão adicionados dinamicamente aqui -->
+    </tbody>
+</table>
+
+<script src="js/model/cliente.js"></script>
+<script src="js/model/clientes.js"></script>
+<script src="js/controller/cliente-controller.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>

@@ -1,7 +1,4 @@
-//1. Desenvolver a classe Cliente, contendo como atributos: nome, cpf e uma conta (apenas para simplificar), e seus respectivos métodos get e set;
-
 class Cliente {
-
     private _nome: string;
     private _cpf: string;
     private _conta: Conta;
@@ -12,31 +9,31 @@ class Cliente {
         this._conta = conta;
     }
 
-    get nome() {
+    get nome(): string {
         return this._nome;
     }
 
-    set nome(novoNome) {
-        this._nome = novoNome;
+    set nome(value: string) {
+        this._nome = value;
     }
 
-    get cpf() {
+    get cpf(): string {
         return this._cpf;
     }
 
-    set cpf(novoCpf) {
-        this._cpf = novoCpf;
+    set cpf(value: string) {
+        this._cpf = value;
     }
 
     get conta(): Conta {
         return this._conta;
     }
 
-    set conta(novaConta: Conta) {
-        this._conta = novaConta;
+    set conta(value: Conta) {
+        this._conta = value;
     }
 
     toString(): string {
-        return `Nome: ${this._nome}\nCpf: ${this._cpf}\nConta: ${this._conta}`;
+        return `Nome: ${this._nome}, CPF: ${this._cpf}, Conta: ${this._conta.toString()}`;
     }
 }

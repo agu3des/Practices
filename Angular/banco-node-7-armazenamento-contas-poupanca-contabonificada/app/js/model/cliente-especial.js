@@ -1,20 +1,15 @@
 class ClienteEspecial extends Cliente {
-    private _dependentes: Array<Cliente>;
-
-    constructor(nome: string, cpf: string, conta: Conta) {
+    constructor(nome, cpf, conta) {
         super(nome, cpf, conta);
-        this._dependentes = new Array<Cliente>();
+        this._dependentes = new Array();
     }
-
-    adicionarDependente(dependente: Cliente): void {
+    adicionarDependente(dependente) {
         this._dependentes.push(dependente);
     }
-
-    listarDependentes(): Array<Cliente> {
+    listarDependentes() {
         return this._dependentes;
     }
-
-    toString(): string {
+    toString() {
         let dependentesInfo = this._dependentes
             .map(dep => dep.toString())
             .join('\n');
