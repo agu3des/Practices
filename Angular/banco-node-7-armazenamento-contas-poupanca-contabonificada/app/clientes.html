@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes</title>
+</head>
+<body>
+    <h1 class="text-center">Clientes</h1>
+
+    <div id="mensagemView"></div>
+
+    <form class="form">
+
+        <div class="form-group">
+            <label for="data">Data de Criação</label>
+            <input type="date" id="data" class="form-control" required autofocus/>
+        </div>
+
+        <div class="form-group">
+            <label for="cliente">Cliente</label>
+            <input type="text" min="1" step="1" id="cliente" class="form-control" value="1" required/>
+        </div>
+
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input id="nome" type="text" class="form-control" value="José" required/>
+        </div>
+
+        <div class="form-group">
+            <label for="cpf">CPF</label>
+            <input id="cpf" type="text" class="form-control" value="12345678900" required/>
+        </div>
+
+        <button class="btn btn-primary" type="submit" onclick="clienteController.inserir(event)">Inserir</button>
+    </form>
+
+    <br><br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>DATA DE CRIAÇÃO</th>
+                <th>CLIENTE</th>
+                <th>NOME</th>
+                <th>CPF</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot></tfoot>
+    </table>
+
+    <script src="js/model/cliente.js"></script>
+    <script src="js/model/clientes.js"></script>
+    <script src="js/model/conta.js"></script>
+    <script src="js/model/cliente-especial.js"></script> <!-- Novo arquivo para ClienteEspecial -->
+    <script src="js/controller/cliente-controller.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
