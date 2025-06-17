@@ -1,0 +1,10 @@
+cria um loop sem ter um
+recursividade é quando tem um chamada da própria função
+logo ela chama a função/método e volta para ela, logo cria um laço infinito
+direta: a função chama a si própria
+indireta: outra função chama essa, e essa chama a outra função
+no projeto foi de forma interativa
+caso padrão: o que acontece "sempre"
+caso base: não segue o padrão #é o que define que vai parar
+Python a partir de um certo número de recursividade ele lança um erro
+cada chamada recursiva tem seu conjunto de variáveis, uma função não tem noção das variáveis da outra

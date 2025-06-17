@@ -1,0 +1,121 @@
+ALGORITMOS DE ORDENAÇÃO:
+
+Bubble Sort: diferencia baixa por causa da quantidade de trocas
+Princípio de funcionamento:
+Quando dois elementos estão froa de ordem, é feita a .. e estes são trocados de posição
+O primeiro elemento é comparado com o segundo, o segundo com o terceiro e assim em diante
+Fim da comparação: quando o penúltimo é comparado com o úlimo
+Indicação de uso: 
+1. Pequena coleção de dados (ex. 900)
+2. Coleção quase ordenada (se tiver como identificar a coleção de dados - RARO)
+Funciona de forma ascendente
+Ex: 12 trocas
+
+Selection Sort: ganha na quantidade de trocas
+1º Ele pega o primeiro e diz que é o menor
+2º Varre o array e compara os outros elementos com o que ele definiu
+3º Achou um menor, ele compara os outros com ele, o que for menor ele troca
+12   23   45   18   7   15  33  41
+7   12   23   45   18   15  33  41
+7   12   15   23   45   18  33  41
+7   12   15   18   23   45  33  41
+7   12   15   18   23   33  45  41
+7   12   15   18   23   33  41  45
+quantidade de trocas = Array-1 
+Ex: 7 trocas
+Pior situação = ordenada de forma reversa
+Média situação = bagunçado
+Melhor situação = ordenada certa
+
+
+Insertion Sort: 
+Melhor que o Bubble mas ruim tbm
+Ele começa com o primeiro, depois pega o que está a sua frente, se for menor troca, depois compara com o que está atrás, se for menor troca
+Seleciona um par e compara
+Seu cursor vai avançando de um em um
+trabalha com "duas visões", uma parte ordenada e outra que falta ordenar
+1º ordenado
+2º desordenado
+Ele vai encaixando dentro do local correto no ordenado
+Quando tiver no canto certo ele é melhor, pois ele só joga não tem que comparar novamente
+Pergunta: Ele entra antes ou depois?
+Enuanto for maior, ele vai comparando, quando acahar um número que seja menor que ele, esse para
+25  48  17  12  57  86  33  92
+Ex: 11 trocas
+
+
+Quick Sort: 
+1º Tem um pivô
+2º Precisa de dois controladores (a = índice subsequente ao pivô e b = índice do último elem do array)
+3º Corra até achar algo maior que o pivô
+Ele vai diminuindo o array (retirando os últimos já ordenados)
+12   23   45   18   7   15  33  41
+p    a                          b
+
+
+
+Merge Sort:
+Recursivo
+Dividindo ao meio, meio até o fim, por recursividade, depois ele devolve pelo mesmo método
+37  83  97  78  14  59  25  72 ->0+7/2=3.5=4
+Vai do que começa até o resultado da divisão
+Pega o indice maior menos o menor e divide por dois, se não tem meio certo, então pega o que tem em formato de pares ex: 4 elementos
+37  83  97  78   -> 0+3/2= 1.5=1         14  59  25  72 -> 4+7=11/2=5.5=5
+37  83          97  78              14  59          25  72
+37      83      97      78      14      59      25      72 
+essa primeira parte é o split
+------------------------------------------------------------
+37 83   78 97      14 59    25  72 (juntou os pares)
+(comparou o 78 e o 97, então ele copia o menor pra primeira posição e joga o 97 para outra)  
+olha o primeiro 37, ele já sabe que tá ordenado com o 83 então compara com o proximo 78, se ele já é menor ent ele nem olha 97, pq se foi menor que o primeiro e o resto tá ordenado então ele já tá ok
+agora ele compara o 83 com o 78 e troca eles dois
+37 78 83 97
+compara 83 com 97, é menor então ele permanece e faz a junção
+14 59    25  72
+14 25 59 72
+
+37 83   78 97      14 59    25  72
+37 com 14, joga o 14 pra frente
+37 e 25, joga o 25
+37 com 59, deixa o 37
+78 com 59, joga o 59
+78 com 72, joga o 72
+acabou os elementos do segundo, então eu só copio eles
+não tem nada depois do 97, então termina
+essa segunda parte é o merge
+------------------------------------------------------------
+
+Shell Sort:
+Funciona com uma variável chamada incrementou ou gap (seu primeiro valor é o len dividido por 2)
+Mesmo se for ímpar ele pega o valor inteiro, logo, 9//2=4
+Ele pega o peimeiro e compara com o resultado do cáculo, e se for menor ele inverte suas posições
+65  83  59  72  14  97  25  78   
+gap = 4 
+65 com 4 a frente = 14
+14  83  59  72  65  97  25  78 
+ele anda 1 e 4 a frente
+83 com 97, permanece
+59 com 25, inverte
+14  83  25  72  65  97  59  78 
+72 com 78, permanece, compara pra trás, não tem nada
+copio e divido o gap/2=2
+14  83  25  72  65  97  59  78 
+14 e 25, permanece
+83 e 72, inverte
+14  72  25  83  65  97  59  78 
+25 e 65, permanece
+83 e 97, permanece
+65 e 59, inverte
+compara 2 para trás, 25 é menor
+14  72  25  83  59  97  65  78 
+97 e 78, inverte
+14  72  25  83  59  78  65  97 
+olha 2 para trás, 83 é maior então puxa
+14  72  25  78  59  83  65  97 
+copia e divide o gap/2=1
+72 e 25, inverte
+14  25  72  78  59  83  65  97 
+inverte 59 com 78, 72
+14  25  59  72  78  83  65  97 
+inverte 65 com 78, 72
+14  25  59  65  72  78  83  97 

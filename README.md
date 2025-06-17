@@ -1,27 +1,61 @@
-<h1 align="center">Practice</h1>
+# Practice
 
-`"Practice"` - Python, R, Html/Css, JavaScript, NodeJS and React
-
-## Requisitions
-+ `VS Code`
-+ `R`
-+ `NodeJS/Npm`
-
-## Use
-> This repository is used for programming practice.
-
-## Description of Files
-| Name | Description |
-| ------ | ----------- |
-| Html/Css | There are html and css practices, ex: forms, positions, style.|
-| JavaScript | There are javascript practices, ex: array, functions.|
-| Node | There are nodejs practices, ex: uses of modules.|
-| React | There are react practices, ex: first project using nextjs.|
-| R | There are r practices, ex: mean, log.|
+💻 Repository for programming practice across multiple technologies.
 
 
-### Developer
+## 🧠 Technologies Covered
+
+- **Frontend**:
+  - HTML
+  - CSS
+  - JavaScript
+  - React (Next.js)
+
+- **Backend**:
+  - Node.js (NPM)
+
+- **Data & Scripting**:
+  - Python
+  - R
+  - Kotlin
+
+- **Databases**:
+  - PL/SQL (Oracle)
+  - PL/pgSQL (PostgreSQL)
+  - MongoDB
+
+- **Version Control**:
+  - Git
+
+
+## 📦 Project Structure
+
+| Folder        | Description                                                   |
+|----------------|---------------------------------------------------------------|
+| `Html-Css`     | Practices with HTML and CSS (forms, positioning, styles).     |
+| `JavaScript`   | JavaScript exercises (arrays, functions, DOM manipulation).   |
+| `Node`         | Node.js practices (modules, APIs, server creation).           |
+| `React`        | React practices using Next.js (first projects, components).   |
+| `Python`       | Python exercises (algorithms, data analysis, scripts).        |
+| `R`            | R language exercises (mean, logarithms, data analysis).       |
+| `Kotlin`       | Kotlin programming basics and exercises.                      |
+| `Database`     | SQL practices (PL/SQL, PL/pgSQL, MongoDB queries).            |
+| `Git`          | Prompts of version control.                                   |
+
+---
+
+## 🚀 Usage
+
+> This repository is intended for personal programming practice and learning. Each folder contains independent exercises and mini-projects focused on understanding concepts and improving coding skills.
+
+---
+
+## 👩‍💻 Developer
+
 - [Ananda Guedes](https://github.com/agu3des)
 
-### References
-Formed by my codes + friends and professors
+---
+
+## 📚 References
+
+> This repository is built from my studies, codes, help from friends, and professors.

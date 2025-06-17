@@ -1,0 +1,39 @@
+Quantidade de Registros: 2845
+
+Maior nota da instituição: 786.91
+
+Maior nota de corte da instituição: 709.83
+
+CAMPI
+CAMPUS CABEDELO - Maior nota: 716.73 - Maior nota de corte: 624.46
+CAMPUS CAJAZEIRAS - Maior nota: 759.4 - Maior nota de corte: 693.71
+CAMPUS CAMPINA GRANDE - Maior nota: 751.29 - Maior nota de corte: 685.12
+CAMPUS CATOLÉ DO ROCHA - Maior nota: 687.59 - Maior nota de corte: 653.19
+CAMPUS ESPERANÇA - Maior nota: 692.8 - Maior nota de corte: 618.39
+CAMPUS GUARABIRA - Maior nota: 721.9 - Maior nota de corte: 602.29
+CAMPUS JOÃO PESSOA - Maior nota: 786.91 - Maior nota de corte: 709.83
+CAMPUS MONTEIRO - Maior nota: 709.8 - Maior nota de corte: 621.72
+CAMPUS PATOS - Maior nota: 726.46 - Maior nota de corte: 644.79
+CAMPUS PICUÍ - Maior nota: 680.14 - Maior nota de corte: 549.23
+CAMPUS PRINCESA ISABEL - Maior nota: 647.69 - Maior nota de corte: 570.73
+CAMPUS SANTA RITA - Maior nota: 752.27 - Maior nota de corte: 665.44
+CAMPUS SOUSA - Unidade Sede - Maior nota: 736.19 - Maior nota de corte: 574.98
+CAMPUS SOUSA - Unidade São Gonçalo - Maior nota: 726.28 - Maior nota de corte: 676.3
+Campus Itaporanga - Maior nota: 708.6 - Maior nota de corte: 586.03
+
+CURSOS - CAMPUS JOÃO PESSOA
+ADMINISTRAÇÃO - Maior nota: 681.31 - Maior nota de corte: 606.97
+AUTOMAÇÃO INDUSTRIAL - Maior nota: 662.93 - Maior nota de corte: 551.21
+DESIGN DE INTERIORES - Maior nota: 710.3 - Maior nota de corte: 635.63
+ENGENHARIA CIVIL - Maior nota: 751.04 - Maior nota de corte: 637.01
+ENGENHARIA DE SOFTWARE - Maior nota: 750.58 - Maior nota de corte: 709.83
+ENGENHARIA ELÉTRICA - Maior nota: 714.4 - Maior nota de corte: 623.93
+ENGENHARIA MECÂNICA - Maior nota: 678.39 - Maior nota de corte: 595.44
+GEOPROCESSAMENTO - Maior nota: 654.46 - Maior nota de corte: 0.0
+GESTÃO AMBIENTAL - Maior nota: 624.41 - Maior nota de corte: 542.29
+GESTÃO DE NEGÓCIOS IMOBILIÁRIOS - Maior nota: 652.71 - Maior nota de corte: 566.8
+LETRAS - LÍNGUA PORTUGUESA - Maior nota: 718.58 - Maior nota de corte: 609.24
+MATEMÁTICA - Maior nota: 726.62 - Maior nota de corte: 482.56
+QUÍMICA - Maior nota: 714.19 - Maior nota de corte: 517.63
+REDES DE COMPUTADORES - Maior nota: 786.91 - Maior nota de corte: 639.38
+SISTEMAS DE TELECOMUNICAÇÕES - Maior nota: 709.69 - Maior nota de corte: 538.13

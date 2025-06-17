@@ -1,0 +1,18 @@
+#garante a ordem de chegada e saída
+#só tenho que me preocupar em alterar a posição: se eu removi eu mudo a frente
+#não é pq a frente é maior que o fim que a fila está vazia
+#circular: pega as duas extremidades e junta
+#insere no final e na frente remove
+#clusher: conjuntos de elementos um perto do outro
+#adiciona um controlador a mais
+#para saber se tá vazia utiliza o tamanho
+#na inserção do decremento é antes
+#o final começa no -1
+#a frente começa no 0
+#inserção:
+- incrementar final
+- armazenar final
+#remoção:
+- pego o que está na frente 
+- depois incrementar o tamanho
+
