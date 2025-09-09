@@ -1,3 +1,4 @@
+'''
 # SOMA SIMPLES
 soma = 0
 A = int(input())
@@ -115,3 +116,17 @@ salarioFixo = float(input())
 totalVendas = float(input())
 salarioTotal =  (0.15*totalVendas) + salarioFixo 
 print('TOTAL = R$ {:.2f}'.format(salarioTotal))
+'''
+
+t = int(input('Diga o número do chá: '))
+a,b,c,d,e = map(int,input().split())
+list = [a,b,c,d,e]
+cont = 0
+
+if 1 <= t <= 4:
+    for i in list:
+        if 1 <= i <= 4 and i == t:
+                cont += 1
+    print(cont)
+else:
+    print(f'Escolha um número válido, {t} não é!')
