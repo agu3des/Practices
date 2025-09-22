@@ -1,0 +1,15 @@
+Após a execução do comando "django-admin startproject ...", novos arquivos foram adicionados à pasta. Quais foram esses arquivos? Faça uma pesquisa e descreva qual a finalidade de cada um deles.
+
+Novos: 
+pasta myapp/ – Pacote principal do projeto Django, contém arquivos de configuração e inicialização. 
+    __init__.py – Torna a pasta um pacote Python. 
+    asgi.py – Ponto de entrada para servidores ASGI (suporte a apps assíncronas). 
+    settings.py – Arquivo central de configurações do projeto (apps, banco, middlewares, etc.). 
+    urls.py – Define as rotas (URLs) principais do projeto. 
+    wsgi.py – Ponto de entrada para servidores WSGI (deploy tradicional). 
+db.sqlite3 – Banco de dados SQLite padrão para desenvolvimento. 
+manage.py – Script para executar comandos administrativos do Django. 
+
+Antigos: Dockerfile – Define como construir a imagem Docker do projeto. 
+docker-compose.yaml – Orquestra serviços (app, banco, etc.) em containers. 
+requirements.txt – Lista de dependências Python para instalação.
