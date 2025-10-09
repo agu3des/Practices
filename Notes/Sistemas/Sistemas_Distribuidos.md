@@ -1,5 +1,10 @@
 # Sistemas Distribuídos
 
+Escala que os desenvolvedores se preocupam -> escala de tamanho
+    - campacidade computacional, limitada pelas CPUs
+    - capacidade de armazenamento, incluindo a taxa de transferência entre CPU e discos 
+    - A rede entre o usuário e o serviço centralizado
+
 ### **Resumo - Capítulo 1**
 
 **Definição:** uma coleção de computadores independentes que se apresenta aos usuários como um sistema único e coerente.
