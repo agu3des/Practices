@@ -5,5 +5,8 @@ urlpatterns = [
     path('welcome/', views.welcome, name='welcome'),
     path('eco/<str:message>/', views.eco, name='eco'),
     path('info/', views.info, name='info'),
-    #path('eco/<str:message>/', views.EcoView, name='eco'),
+
+    path('home/', views.home, name='home'),
+    path('conditionals/', views.conditionals, name='conditionals'),
+
 ]
