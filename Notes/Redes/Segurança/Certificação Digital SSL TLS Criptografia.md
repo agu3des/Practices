@@ -444,94 +444,83 @@
 
 - **KEYTOOL**
     
-- O que você listou são alguns dos problemas mais comuns na hora de configurar e gerenciar certificados SSL/TLS. Para cada um deles, há um conjunto de passos para diagnosticar e resolver o problema.
 
 - **TROUBLESHOOTING SSL/TLS**
 
-### **SSL SHOPEE**
+    - **SSL SHOPEE**
 
-Esse termo não é um problema técnico padrão. Geralmente, ele pode se referir a um erro específico que ocorre ao tentar acessar o site da Shopee ou a problemas com a segurança de transações online.
+        Esse termo não é um problema técnico padrão. Geralmente, ele pode se referir a um erro específico que ocorre ao tentar acessar o site da Shopee ou a problemas com a segurança de transações online.
 
-**Como resolver:**
+        **Como resolver:**
 
-* **Verifique o relógio do sistema:** Se a data e a hora do seu computador estiverem incorretas, isso pode causar erros de certificado. Corrija-as para a data e hora atuais.
-* **Limpe o cache e os cookies:** Dados antigos de navegação podem causar conflitos. Tente limpar o cache do seu navegador.
-* **Teste em outro navegador:** Se o problema persistir, tente acessar o site da Shopee em um navegador diferente para ver se o problema está no navegador que você usa.
-* **Atualize seu navegador:** Certifique-se de que a versão do seu navegador está atualizada.
+        * **Verifique o relógio do sistema:** Se a data e a hora do seu computador estiverem incorretas, isso pode causar erros de certificado. Corrija-as para a data e hora atuais.
+        * **Limpe o cache e os cookies:** Dados antigos de navegação podem causar conflitos. Tente limpar o cache do seu navegador.
+        * **Teste em outro navegador:** Se o problema persistir, tente acessar o site da Shopee em um navegador diferente para ver se o problema está no navegador que você usa.
+        * **Atualize seu navegador:** Certifique-se de que a versão do seu navegador está atualizada.
 
----
 
-### **Common Name incorreto**
+    - **Common Name incorreto**
 
-O **Common Name (CN)** é o nome de domínio principal que o certificado SSL protege. Se o CN no certificado não corresponder ao domínio que o usuário está tentando acessar, o navegador exibirá um aviso de segurança.
+        O **Common Name (CN)** é o nome de domínio principal que o certificado SSL protege. Se o CN no certificado não corresponder ao domínio que o usuário está tentando acessar, o navegador exibirá um aviso de segurança.
 
-**Como resolver:**
+        **Como resolver:**
 
-* **Gerar um novo certificado:** A solução mais eficaz é gerar um novo **CSR** (Certificate Signing Request) com o **Common Name** correto.
-* **Verificar o URL:** Certifique-se de que a URL digitada no navegador corresponde exatamente ao nome de domínio no certificado. Inclua ou remova o `www.` conforme o caso.
-* **Usar um certificado Wildcard:** Se você precisa proteger múltiplos subdomínios, considere usar um certificado **Wildcard** (ex.: `*.seudominio.com.br`) que cobrirá todos eles.
+        * **Gerar um novo certificado:** A solução mais eficaz é gerar um novo **CSR** (Certificate Signing Request) com o **Common Name** correto.
+        * **Verificar o URL:** Certifique-se de que a URL digitada no navegador corresponde exatamente ao nome de domínio no certificado. Inclua ou remova o `www.` conforme o caso.
+        * **Usar um certificado Wildcard:** Se você precisa proteger múltiplos subdomínios, considere usar um certificado **Wildcard** (ex.: `*.seudominio.com.br`) que cobrirá todos eles.
 
----
 
-### **Certificado desaparecendo do IIS**
+    - **Certificado desaparecendo do IIS**
 
-Isso pode ser um problema de permissões, corrupção do certificado ou um bug no próprio **IIS (Internet Information Services)**.
+        Isso pode ser um problema de permissões, corrupção do certificado ou um bug no próprio **IIS (Internet Information Services)**.
 
-**Como resolver:**
+        **Como resolver:**
 
-* **Verificar o Certificado no Repositório:** Use o `MMC (Microsoft Management Console)` para verificar se o certificado ainda está no armazenamento de certificados do computador. Se estiver, pode ser necessário reimportá-lo no IIS.
-* **Checar Permissões:** Certifique-se de que a conta de serviço do IIS tem permissão de leitura para a chave privada do certificado.
-* **Reiniciar o IIS:** Em alguns casos, um simples `iisreset` no Prompt de Comando (executado como administrador) pode resolver o problema.
+        * **Verificar o Certificado no Repositório:** Use o `MMC (Microsoft Management Console)` para verificar se o certificado ainda está no armazenamento de certificados do computador. Se estiver, pode ser necessário reimportá-lo no IIS.
+        * **Checar Permissões:** Certifique-se de que a conta de serviço do IIS tem permissão de leitura para a chave privada do certificado.
+        * **Reiniciar o IIS:** Em alguns casos, um simples `iisreset` no Prompt de Comando (executado como administrador) pode resolver o problema.
 
----
+    - **Caminho da chave ou certificado incorretos**
 
-### **Caminho da chave ou certificado incorretos**
+        Se o servidor não conseguir encontrar o arquivo do certificado ou da chave privada, a instalação falhará.
 
-Se o servidor não conseguir encontrar o arquivo do certificado ou da chave privada, a instalação falhará.
+        **Como resolver:**
 
-**Como resolver:**
+        * **Verifique o caminho:** Certifique-se de que o caminho especificado para o certificado (arquivo `.crt` ou `.cer`) e para a chave privada (arquivo `.key`) está correto e não contém erros de digitação.
+        * **Checar as permissões:** A conta do usuário ou serviço que está tentando acessar o certificado precisa de permissões de leitura para os arquivos e o diretório onde estão armazenados.
+        * **Usar o formato correto:** Verifique se os arquivos estão no formato esperado pelo seu servidor web (por exemplo, Apache e Nginx usam arquivos `.crt` e `.key`).
 
-* **Verifique o caminho:** Certifique-se de que o caminho especificado para o certificado (arquivo `.crt` ou `.cer`) e para a chave privada (arquivo `.key`) está correto e não contém erros de digitação.
-* **Checar as permissões:** A conta do usuário ou serviço que está tentando acessar o certificado precisa de permissões de leitura para os arquivos e o diretório onde estão armazenados.
-* **Usar o formato correto:** Verifique se os arquivos estão no formato esperado pelo seu servidor web (por exemplo, Apache e Nginx usam arquivos `.crt` e `.key`).
+    - **Checando match entre key, CSR e Certificado Digital**
 
----
+        A chave privada, o **CSR** e o certificado devem ser gerados em conjunto. Se houver uma incompatibilidade, a instalação do certificado falhará.
 
-### **Checando match entre key, CSR e Certificado Digital**
+        **Como resolver:**
 
-A chave privada, o **CSR** e o certificado devem ser gerados em conjunto. Se houver uma incompatibilidade, a instalação do certificado falhará.
+        * **Use OpenSSL:** Você pode usar o **OpenSSL** para verificar se os arquivos correspondem. Execute os seguintes comandos para extrair e comparar os hashes:
 
-**Como resolver:**
+            * **Extrair o hash da chave privada:**
+                `openssl rsa -noout -modulus -in seuchave.key | openssl md5`
+            * **Extrair o hash do CSR:**
+                `openssl req -noout -modulus -in seucsr.csr | openssl md5`
+            * **Extrair o hash do certificado:**
+                `openssl x509 -noout -modulus -in seucertificado.crt | openssl md5`
 
-* **Use OpenSSL:** Você pode usar o **OpenSSL** para verificar se os arquivos correspondem. Execute os seguintes comandos para extrair e comparar os hashes:
+            Se os hashes **não forem idênticos**, você precisará gerar um novo **CSR** e solicitar um novo certificado.
 
-    * **Extrair o hash da chave privada:**
-        `openssl rsa -noout -modulus -in seuchave.key | openssl md5`
-    * **Extrair o hash do CSR:**
-        `openssl req -noout -modulus -in seucsr.csr | openssl md5`
-    * **Extrair o hash do certificado:**
-        `openssl x509 -noout -modulus -in seucertificado.crt | openssl md5`
+    - **Problema de validação CAA - Zona de DNS**
 
-    Se os hashes **não forem idênticos**, você precisará gerar um novo **CSR** e solicitar um novo certificado.
+        **CAA (Certificate Authority Authorization)** é um registro DNS que permite que o proprietário de um domínio especifique quais **CAs (Certificate Authorities)** estão autorizadas a emitir certificados para esse domínio. Se você tiver um registro **CAA** e a CA que você usou não estiver na lista, a validação falhará.
 
----
+        **Como resolver:**
 
-### **Problema de validação CAA - Zona de DNS**
+        * **Verifique seu registro CAA:** Use uma ferramenta de pesquisa de DNS para ver se seu domínio tem um registro **CAA**.
+        * **Remova ou atualize o registro:** Se você tiver um registro **CAA** que não inclui a sua **CA**, você deve removê-lo ou adicionar um novo registro que permita a emissão pela sua **CA** preferida.
 
-**CAA (Certificate Authority Authorization)** é um registro DNS que permite que o proprietário de um domínio especifique quais **CAs (Certificate Authorities)** estão autorizadas a emitir certificados para esse domínio. Se você tiver um registro **CAA** e a CA que você usou não estiver na lista, a validação falhará.
+    - **Problemas de cadeia de certificação**
 
-**Como resolver:**
+        Um certificado **SSL** não é um arquivo único. Ele é parte de uma cadeia de confiança que vai do seu certificado de domínio até a CA raiz. Se o servidor não enviar a cadeia completa para o navegador do cliente, o navegador não conseguirá validar a confiança. Isso resulta no erro "cadeia de certificação incompleta" ou "não confiável".
 
-* **Verifique seu registro CAA:** Use uma ferramenta de pesquisa de DNS para ver se seu domínio tem um registro **CAA**.
-* **Remova ou atualize o registro:** Se você tiver um registro **CAA** que não inclui a sua **CA**, você deve removê-lo ou adicionar um novo registro que permita a emissão pela sua **CA** preferida.
+        **Como resolver:**
 
----
-
-### **Problemas de cadeia de certificação**
-
-Um certificado **SSL** não é um arquivo único. Ele é parte de uma cadeia de confiança que vai do seu certificado de domínio até a CA raiz. Se o servidor não enviar a cadeia completa para o navegador do cliente, o navegador não conseguirá validar a confiança. Isso resulta no erro "cadeia de certificação incompleta" ou "não confiável".
-
-**Como resolver:**
-
-* **Instale o certificado intermediário:** Você deve instalar o seu certificado de domínio e também os certificados **intermediários** que foram fornecidos pela sua **CA**.
-* **Verifique a instalação:** Use uma ferramenta online como o **SSL Shopper Checker** para verificar se a cadeia de certificação está completa e se não há problemas de configuração.
+        * **Instale o certificado intermediário:** Você deve instalar o seu certificado de domínio e também os certificados **intermediários** que foram fornecidos pela sua **CA**.
+        * **Verifique a instalação:** Use uma ferramenta online como o **SSL Shopper Checker** para verificar se a cadeia de certificação está completa e se não há problemas de configuração.
