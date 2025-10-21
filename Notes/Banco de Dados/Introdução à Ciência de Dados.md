@@ -89,3 +89,5 @@ Não use mais de duas linhas de tendência.
     - Transformação: dados precisam ser limpos, ou seja, remover valores nulos, datas no formato correto e dados desatualizados rapidamente. A estrutura deve se alinhar com o sistema necessário para manter análises precisas
     - Armazenamento: precisam ser armazenados em locais e formulários, facilitando a execução de relatórios sobre vendas semanais e para os cientistas de dados para criar modelos de recomendação preditivos. Além da segurança e gerenciamento de acesso a dados. O armazenamento pode ser local ou em nuvem ou híbridos.
 ![alt text](image.png)
+
+## Inteligência Artificial e Aprendizagem de Máquina
