@@ -1,0 +1,7 @@
+{
+    "vsintellicode.modify.editor.suggestSelection": "disabled",
+    "vsintellicode.java.completionsEnabled": false,
+    "vsintellicode.python.completionsEnabled": false,
+    "vsintellicode.sql.completionsEnabled": false,
+    "vsintellicode.typescript.completionsEnabled": false
+}
