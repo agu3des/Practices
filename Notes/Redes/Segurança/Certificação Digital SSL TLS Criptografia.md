@@ -351,8 +351,176 @@
     - Validação por URL: é enviado um token de validação para o cliente, se o cliente conseguir adicionar o token em determinado arquivo de seu site, e o sistema da AC puder ler, o controle está aprovado. Usar quando o cliente não possui acesso na conta whois por algum motivo.
     - Validação por DNS: é enviado um token de validação para o cliente, se o cliente conseguir adicionar o token em um TXT RECORD em seu DNS autoritativo, e o sistema da AC puder ler, o controle está aprovado. Deve ser usado apenas em último caso devido a necessidade de um tempo de até 2h para sua replicação.
 
-Validação de CAA: Configuração de segurança, trata-se de uma configuração com o DNS autoritativo permitindo que determinada AC emita certificados em nome do domínio 
+    Validação de CAA: Configuração de segurança, trata-se de uma configuração com o DNS autoritativo permitindo que determinada AC emita certificados em nome do domínio 
 
-IIS - recurso do windows que pode ser ativado
+    IIS - recurso do windows que pode ser ativado
 
-https://support.globalsign.com/pt-br
+    https://support.globalsign.com/pt-br
+
+    Para te ajudar com a tarefa de geração e manipulação de certificados SSL, preparei um guia detalhado com os comandos `openssl` para cada etapa que você solicitou.
+
+    -----
+
+    ### **Gerando um Certificado Autoassinado**
+
+    Um certificado autoassinado é útil para ambientes de teste e desenvolvimento, pois ele não é emitido por uma Autoridade Certificadora (CA) confiável.
+
+    * **Comando:**
+        ```bash
+        openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout minha_chave_privada.key -out meu_certificado.crt
+        ```
+    * **O que você precisa saber:**
+        * `-x509`: Cria um certificado autoassinado em vez de uma requisição de certificado (CSR).
+        * `-nodes`: "No DES" — não encripta a chave privada.
+        * `-days 365`: Define a validade do certificado para 365 dias.
+        * `-newkey rsa:2048`: Gera uma nova chave privada RSA de 2048 bits.
+        * `-keyout minha_chave_privada.key`: Nome do arquivo onde a chave privada será salva.
+        * `-out meu_certificado.crt`: Nome do arquivo onde o certificado será salvo.
+        * Durante a execução, você precisará preencher algumas informações, como país, estado, cidade, organização e, o mais importante, o **Common Name (CN)**, que deve ser o nome de domínio ou o endereço IP do servidor.
+
+    -----
+
+    ### **Testando um Certificado em Serviço de Rede**
+
+    Você pode usar o `openssl` para verificar a conexão SSL com um servidor e inspecionar o certificado que ele está apresentando.
+
+    * **Comando:**
+        ```bash
+        openssl s_client -connect www.exemplo.com:443
+        ```
+    * **O que você precisa saber:**
+        * `s_client`: O comando que atua como um cliente SSL/TLS.
+        * `-connect www.exemplo.com:443`: O endereço do servidor e a porta (geralmente 443 para HTTPS).
+        * Após o comando, o terminal mostrará os detalhes da conexão, como a versão do protocolo, a cifra utilizada e os dados do certificado do servidor. Pressione `CTRL+C` para sair.
+
+    -----
+
+    ### **Gerando um Arquivo PFX (PKCS\#12)**
+
+    O formato **PFX** (ou PKCS\#12) é um contêiner que armazena a chave privada e o certificado em um único arquivo, protegido por senha. É muito comum em servidores Microsoft IIS e em algumas outras plataformas.
+
+    * **Comando:**
+        ```bash
+        openssl pkcs12 -export -out meu_certificado.pfx -inkey minha_chave_privada.key -in meu_certificado.crt
+        ```
+    * **O que você precisa saber:**
+        * `pkcs12 -export`: Indica que a ação é de exportar para o formato PKCS\#12.
+        * `-out meu_certificado.pfx`: Nome do arquivo de saída.
+        * `-inkey minha_chave_privada.key`: Arquivo da chave privada.
+        * `-in meu_certificado.crt`: Arquivo do certificado.
+        * Você será solicitado a criar uma senha para proteger o arquivo PFX.
+
+    -----
+
+    ### **Gerando PFX com Cadeias de Certificação**
+
+    Quando você tem um certificado emitido por uma CA, é essencial incluir os **certificados intermediários** (cadeias) para que o navegador do usuário possa validar a confiança do seu certificado.
+
+    * **Comando:**
+        ```bash
+        openssl pkcs12 -export -chain -out meu_certificado_com_cadeia.pfx -inkey minha_chave_privada.key -in meu_certificado.crt -certfile cadeia_intermediaria.crt
+        ```
+    * **O que você precisa saber:**
+        * `-chain`: Comando que instrui a inclusão da cadeia de certificação.
+        * `-certfile cadeia_intermediaria.crt`: O arquivo que contém os certificados intermediários. Você pode concatenar vários certificados intermediários em um único arquivo `.crt`.
+
+    -----
+
+    ### **Desmembrando um Arquivo PFX**
+
+    Para extrair a chave privada, o certificado e a cadeia de certificados de um arquivo PFX, você pode usar este comando. Isso é útil quando você precisa migrar um certificado para um servidor que exige arquivos separados.
+
+    * **Comando:**
+        ```bash
+        openssl pkcs12 -in meu_certificado.pfx -out meu_arquivo_extraido.pem -nodes
+        ```
+    * **O que você precisa saber:**
+        * `pkcs12 -in meu_certificado.pfx`: Especifica o arquivo PFX de entrada.
+        * `-out meu_arquivo_extraido.pem`: Define o nome do arquivo de saída. Este arquivo `.pem` conterá a chave privada, o certificado e a cadeia.
+        * `-nodes`: Desabilita a encriptação na chave privada extraída.
+        * Você precisará fornecer a senha do arquivo PFX.
+
+    Após a execução, o arquivo `meu_arquivo_extraido.pem` conterá todos os elementos. Para separá-los em arquivos individuais, você pode simplesmente copiar e colar o conteúdo em arquivos separados, respeitando as marcações de `-----BEGIN ...` e `-----END ...`.
+
+- **KEYTOOL**
+    
+
+- **TROUBLESHOOTING SSL/TLS**
+
+    - **SSL SHOPEE**
+
+        Esse termo não é um problema técnico padrão. Geralmente, ele pode se referir a um erro específico que ocorre ao tentar acessar o site da Shopee ou a problemas com a segurança de transações online.
+
+        **Como resolver:**
+
+        * **Verifique o relógio do sistema:** Se a data e a hora do seu computador estiverem incorretas, isso pode causar erros de certificado. Corrija-as para a data e hora atuais.
+        * **Limpe o cache e os cookies:** Dados antigos de navegação podem causar conflitos. Tente limpar o cache do seu navegador.
+        * **Teste em outro navegador:** Se o problema persistir, tente acessar o site da Shopee em um navegador diferente para ver se o problema está no navegador que você usa.
+        * **Atualize seu navegador:** Certifique-se de que a versão do seu navegador está atualizada.
+
+
+    - **Common Name incorreto**
+
+        O **Common Name (CN)** é o nome de domínio principal que o certificado SSL protege. Se o CN no certificado não corresponder ao domínio que o usuário está tentando acessar, o navegador exibirá um aviso de segurança.
+
+        **Como resolver:**
+
+        * **Gerar um novo certificado:** A solução mais eficaz é gerar um novo **CSR** (Certificate Signing Request) com o **Common Name** correto.
+        * **Verificar o URL:** Certifique-se de que a URL digitada no navegador corresponde exatamente ao nome de domínio no certificado. Inclua ou remova o `www.` conforme o caso.
+        * **Usar um certificado Wildcard:** Se você precisa proteger múltiplos subdomínios, considere usar um certificado **Wildcard** (ex.: `*.seudominio.com.br`) que cobrirá todos eles.
+
+
+    - **Certificado desaparecendo do IIS**
+
+        Isso pode ser um problema de permissões, corrupção do certificado ou um bug no próprio **IIS (Internet Information Services)**.
+
+        **Como resolver:**
+
+        * **Verificar o Certificado no Repositório:** Use o `MMC (Microsoft Management Console)` para verificar se o certificado ainda está no armazenamento de certificados do computador. Se estiver, pode ser necessário reimportá-lo no IIS.
+        * **Checar Permissões:** Certifique-se de que a conta de serviço do IIS tem permissão de leitura para a chave privada do certificado.
+        * **Reiniciar o IIS:** Em alguns casos, um simples `iisreset` no Prompt de Comando (executado como administrador) pode resolver o problema.
+
+    - **Caminho da chave ou certificado incorretos**
+
+        Se o servidor não conseguir encontrar o arquivo do certificado ou da chave privada, a instalação falhará.
+
+        **Como resolver:**
+
+        * **Verifique o caminho:** Certifique-se de que o caminho especificado para o certificado (arquivo `.crt` ou `.cer`) e para a chave privada (arquivo `.key`) está correto e não contém erros de digitação.
+        * **Checar as permissões:** A conta do usuário ou serviço que está tentando acessar o certificado precisa de permissões de leitura para os arquivos e o diretório onde estão armazenados.
+        * **Usar o formato correto:** Verifique se os arquivos estão no formato esperado pelo seu servidor web (por exemplo, Apache e Nginx usam arquivos `.crt` e `.key`).
+
+    - **Checando match entre key, CSR e Certificado Digital**
+
+        A chave privada, o **CSR** e o certificado devem ser gerados em conjunto. Se houver uma incompatibilidade, a instalação do certificado falhará.
+
+        **Como resolver:**
+
+        * **Use OpenSSL:** Você pode usar o **OpenSSL** para verificar se os arquivos correspondem. Execute os seguintes comandos para extrair e comparar os hashes:
+
+            * **Extrair o hash da chave privada:**
+                `openssl rsa -noout -modulus -in seuchave.key | openssl md5`
+            * **Extrair o hash do CSR:**
+                `openssl req -noout -modulus -in seucsr.csr | openssl md5`
+            * **Extrair o hash do certificado:**
+                `openssl x509 -noout -modulus -in seucertificado.crt | openssl md5`
+
+            Se os hashes **não forem idênticos**, você precisará gerar um novo **CSR** e solicitar um novo certificado.
+
+    - **Problema de validação CAA - Zona de DNS**
+
+        **CAA (Certificate Authority Authorization)** é um registro DNS que permite que o proprietário de um domínio especifique quais **CAs (Certificate Authorities)** estão autorizadas a emitir certificados para esse domínio. Se você tiver um registro **CAA** e a CA que você usou não estiver na lista, a validação falhará.
+
+        **Como resolver:**
+
+        * **Verifique seu registro CAA:** Use uma ferramenta de pesquisa de DNS para ver se seu domínio tem um registro **CAA**.
+        * **Remova ou atualize o registro:** Se você tiver um registro **CAA** que não inclui a sua **CA**, você deve removê-lo ou adicionar um novo registro que permita a emissão pela sua **CA** preferida.
+
+    - **Problemas de cadeia de certificação**
+
+        Um certificado **SSL** não é um arquivo único. Ele é parte de uma cadeia de confiança que vai do seu certificado de domínio até a CA raiz. Se o servidor não enviar a cadeia completa para o navegador do cliente, o navegador não conseguirá validar a confiança. Isso resulta no erro "cadeia de certificação incompleta" ou "não confiável".
+
+        **Como resolver:**
+
+        * **Instale o certificado intermediário:** Você deve instalar o seu certificado de domínio e também os certificados **intermediários** que foram fornecidos pela sua **CA**.
+        * **Verifique a instalação:** Use uma ferramenta online como o **SSL Shopper Checker** para verificar se a cadeia de certificação está completa e se não há problemas de configuração.
