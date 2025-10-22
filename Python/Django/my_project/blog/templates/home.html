@@ -1,8 +1,9 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-    <body>
-        <h1>Olá, {{ usuario }}!</h1>
-        <p>Hoje é {{ now|date:"d/m/Y" }}</p>
-        <h1>Número: {{ numero_original|add:numero_original }}!</h1>
-    </body>
-</html>
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block content %}
+    <h1>{{ username }}</h1>
+    
+    <p>Número multiplicado por 2: {{ number|multiply:2 }}</p>
+    <p>Data atual: {{ now }}</p>
+{% endblock %}

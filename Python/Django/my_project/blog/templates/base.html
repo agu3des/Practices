@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meu Site</title>
+    <style>
+        nav {
+            background-color: #333;
+            padding: 1em;
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1em;
+        }
+        .content {
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'conditionals' %}">Condicionais</a>
+        <a href="{% url 'loops' %}">Loops</a>
+        <a href="{% url 'contato' telefone='123456789' %}">Contato</a>
+        <a href="{% url 'about' %}">Sobre</a>
+    </nav>
+    
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Meu Site</p>
+    </footer>
+</body>
+</html>

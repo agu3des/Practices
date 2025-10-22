@@ -18,6 +18,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls), #para toda rota, tem que se adicionar aqui
-    path("blog/", include("blog.urls")), #tudo que tiver na minha aplicação vai ser acessivel por essa rota
+    path('admin/', admin.site.urls),
+    path('', include('blog.urls')),  # Removido o prefixo 'blog/'
 ]

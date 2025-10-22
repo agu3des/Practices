@@ -1,24 +1,28 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-    <body>
-        {% if loggin_in == True %}
-            <h1>Bem-vindo de volta!</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Exemplos de Condicionais</h1>
+
+    <div class="conditional-examples">
+        <h2>Status de Login</h2>
+        {% if is_logged_in %}
+            <p>Bem-vindo de volta!</p>
         {% else %}
-            <h1>Faça login para continuar.</h1>
-        {% endif %}
-        
-        {% if idade >= 18 %}
-            <h1>Maior de idade.</h1>
-        {% else %}
-            <h1>Menor de idade.</h1>
+            <p>Faça login para continuar.</p>
         {% endif %}
 
-        {% if role == 'admin' %}
-            <h1>Você é um administrador.</h1>
-        {% elif role == 'user' %}
-            <h1>Você é um usuário.</h1>
+        <h2>Verificação de Idade</h2>
+        {% if idade >= 18 %}
+            <p>Maior de idade</p>
         {% else %}
-            <h1>Você não tem uma permissão específica.</h1>
+            <p>Menor de idade</p>
         {% endif %}
-    </body>
-</html>
+
+        <h2>Perfil de Usuário</h2>
+        {% if role == 'admin' %}
+            <p>Bem-vindo, administrador!</p>
+        {% elif role == 'user' %}
+            <p>Bem-vindo, usuário!</p>
+        {% endif %}
+    </div>
+{% endblock %}
