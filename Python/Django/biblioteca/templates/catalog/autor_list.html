@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>{{ title }}</h2>
+        <a href="{% url 'catalog:autor-add' %}" class="btn btn-burnt-pink">
+            <i class="bi bi-plus"></i> Adicionar Autor
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for autor in object_list %}
+                <tr>
+                    <td>{{ autor.id }}</td>
+                    <td>{{ autor.nome }}</td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="{% url 'catalog:autor-edit' autor.pk %}" class="btn btn-sm btn-burnt-pink">Editar</a>
+                            <a href="{% url 'catalog:autor-delete' autor.pk %}" class="btn btn-sm btn-danger">Remover</a>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3" class="text-center">Nenhum autor cadastrado.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

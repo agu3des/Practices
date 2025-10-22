@@ -7,11 +7,19 @@ class Editora(models.Model):
     def __str__(self):
         return self.nome
 
+    class Meta:
+        verbose_name = 'Editora'
+        verbose_name_plural = 'Editoras'
+
 class Autor(models.Model):
     nome = models.CharField(max_length=150, unique=True)
 
     def __str__(self):
         return self.nome
+
+    class Meta:
+        verbose_name = 'Autor'
+        verbose_name_plural = 'Autores'
 
 class Livro(models.Model):
     ISBN = models.CharField(max_length=13, unique=True)
@@ -25,6 +33,10 @@ class Livro(models.Model):
     def __str__(self):
         return f"{self.titulo} ({self.ISBN})"
 
+    class Meta:
+        verbose_name = 'Livro'
+        verbose_name_plural = 'Livros'
+
 class Publica(models.Model):
     livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
     autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
@@ -33,6 +45,10 @@ class Publica(models.Model):
         unique_together = ('livro', 'autor')
         verbose_name = 'Publicação'
         verbose_name_plural = 'Publicações'
+        # Garante que não haverá duplicação de relacionamento
+        constraints = [
+            models.UniqueConstraint(fields=['livro', 'autor'], name='unique_publicacao')
+        ]
 
     def __str__(self):
-        return f"{self.autor} -> {self.livro}"
+        return f"{self.autor.nome} → {self.livro.titulo}"

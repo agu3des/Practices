@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>{{ title }}</h2>
+        <a href="{% url 'catalog:publica-add' %}" class="btn btn-burnt-pink">
+            <i class="bi bi-plus"></i> Adicionar Relacionamento Autor-Livro
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Autor</th>
+                    <th>Livro</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for publica in object_list %}
+                <tr>
+                    <td>{{ publica.autor.nome }}</td>
+                    <td>{{ publica.livro.titulo }}</td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="{% url 'catalog:publica-delete' publica.pk %}" 
+                               class="btn btn-sm btn-danger">Remover</a>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3" class="text-center">Nenhuma relação autor-livro cadastrada.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

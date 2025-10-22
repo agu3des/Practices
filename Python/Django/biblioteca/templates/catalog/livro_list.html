@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>{{ title }}</h2>
+        <a href="{% url 'catalog:livro-add' %}" class="btn btn-burnt-pink">
+            <i class="bi bi-plus"></i> Adicionar Livro
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ISBN</th>
+                    <th>Título</th>
+                    <th>Editora</th>
+                    <th>Autores</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for livro in object_list %}
+                <tr>
+                    <td>{{ livro.id }}</td>
+                    <td>{{ livro.ISBN }}</td>
+                    <td>{{ livro.titulo }}</td>
+                    <td>{{ livro.editora }}</td>
+                    <td>
+                        {% for a in livro.autores.all %}
+                            {{ a.nome }}{% if not forloop.last %}, {% endif %}
+                        {% empty %}—
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="{% url 'catalog:livro-edit' livro.pk %}" class="btn btn-sm btn-burnt-pink">Editar</a>
+                            <a href="{% url 'catalog:livro-delete' livro.pk %}" class="btn btn-sm btn-danger">Remover</a>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center">Nenhum livro cadastrado.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

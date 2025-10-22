@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="card">
+        <div class="card-header bg-danger text-white">
+            <h2 class="card-title mb-0">Confirmar Exclusão</h2>
+        </div>
+        <div class="card-body">
+            <p class="lead">Deseja realmente excluir o livro "{{ object.titulo }}"?</p>
+            <form method="post">
+                {% csrf_token %}
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-danger">Confirmar</button>
+                    <a href="{% url 'catalog:livro-list' %}" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
