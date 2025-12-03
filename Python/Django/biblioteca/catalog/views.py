@@ -1,15 +1,26 @@
 from django.urls import reverse_lazy
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
 from .models import Editora, Autor, Livro, Publica
 from .forms import EditoraForm, AutorForm, LivroForm, PublicaForm
 
-# Editora CRUD
+# --- Autenticação (Sign Up) ---
+
+class SignUpView(generic.CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'registration/signup.html'
+    extra_context = {'title': 'Cadastro de Utilizador'}
+
+# --- Editora CRUD ---
+
 class EditoraListView(generic.ListView):
     model = Editora
     template_name = 'catalog/editora_list.html'
     extra_context = {'title': 'Lista de Editoras'}
 
-class EditoraCreateView(generic.CreateView):
+class EditoraCreateView(LoginRequiredMixin, generic.CreateView):
     model = Editora
     form_class = EditoraForm
     template_name = 'catalog/editora_form.html'
@@ -19,7 +30,7 @@ class EditoraCreateView(generic.CreateView):
         'cancel_url': reverse_lazy('catalog:editora-list')
     }
 
-class EditoraUpdateView(generic.UpdateView):
+class EditoraUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Editora
     form_class = EditoraForm
     template_name = 'catalog/editora_form.html'
@@ -29,7 +40,7 @@ class EditoraUpdateView(generic.UpdateView):
         'cancel_url': reverse_lazy('catalog:editora-list')
     }
 
-class EditoraDeleteView(generic.DeleteView):
+class EditoraDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Editora
     template_name = 'catalog/editora_confirm_delete.html'
     success_url = reverse_lazy('catalog:editora-list')
@@ -38,13 +49,14 @@ class EditoraDeleteView(generic.DeleteView):
         'cancel_url': reverse_lazy('catalog:editora-list')
     }
 
-# Autor CRUD
+# --- Autor CRUD ---
+
 class AutorListView(generic.ListView):
     model = Autor
     template_name = 'catalog/autor_list.html'
     extra_context = {'title': 'Lista de Autores'}
 
-class AutorCreateView(generic.CreateView):
+class AutorCreateView(LoginRequiredMixin, generic.CreateView):
     model = Autor
     form_class = AutorForm
     template_name = 'catalog/autor_form.html'
@@ -54,7 +66,7 @@ class AutorCreateView(generic.CreateView):
         'cancel_url': reverse_lazy('catalog:autor-list')
     }
 
-class AutorUpdateView(generic.UpdateView):
+class AutorUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Autor
     form_class = AutorForm
     template_name = 'catalog/autor_form.html'
@@ -64,7 +76,7 @@ class AutorUpdateView(generic.UpdateView):
         'cancel_url': reverse_lazy('catalog:autor-list')
     }
 
-class AutorDeleteView(generic.DeleteView):
+class AutorDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Autor
     template_name = 'catalog/autor_confirm_delete.html'
     success_url = reverse_lazy('catalog:autor-list')
@@ -73,21 +85,22 @@ class AutorDeleteView(generic.DeleteView):
         'cancel_url': reverse_lazy('catalog:autor-list')
     }
 
-# Livro CRUD
+# --- Livro CRUD ---
+
 class LivroListView(generic.ListView):
     model = Livro
     template_name = 'catalog/livro_list.html'
     extra_context = {'title': 'Lista de Livros'}
-    paginate_by = 10 #paginação
+    paginate_by = 10 
 
     def get_queryset(self):
-        # Otimização: select_related para FK e prefetch_related para M2M
-        # Evita centenas de consultas SQL desnecessárias no template
+        # Otimização para evitar N+1 queries
         return Livro.objects.all().select_related('editora').prefetch_related('autores').order_by('-id')
 
-class LivroCreateView(generic.CreateView):
+class LivroCreateView(LoginRequiredMixin, generic.CreateView):
     model = Livro
-    form_class = LivroForm
+    # Usamos fields explícitos para evitar erro com o M2M 'through'
+    fields = ['ISBN', 'titulo', 'publicacao', 'preco', 'estoque', 'editora']
     template_name = 'catalog/livro_form.html'
     success_url = reverse_lazy('catalog:livro-list')
     extra_context = {
@@ -95,9 +108,9 @@ class LivroCreateView(generic.CreateView):
         'cancel_url': reverse_lazy('catalog:livro-list')
     }
 
-class LivroUpdateView(generic.UpdateView):
+class LivroUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Livro
-    form_class = LivroForm
+    fields = ['ISBN', 'titulo', 'publicacao', 'preco', 'estoque', 'editora']
     template_name = 'catalog/livro_form.html'
     success_url = reverse_lazy('catalog:livro-list')
     extra_context = {
@@ -105,7 +118,7 @@ class LivroUpdateView(generic.UpdateView):
         'cancel_url': reverse_lazy('catalog:livro-list')
     }
 
-class LivroDeleteView(generic.DeleteView):
+class LivroDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Livro
     template_name = 'catalog/livro_confirm_delete.html'
     success_url = reverse_lazy('catalog:livro-list')
@@ -114,13 +127,14 @@ class LivroDeleteView(generic.DeleteView):
         'cancel_url': reverse_lazy('catalog:livro-list')
     }
 
-# Publica CRUD
+# --- Publica CRUD ---
+
 class PublicaListView(generic.ListView):
     model = Publica
     template_name = 'catalog/publica_list.html'
     extra_context = {'title': 'Lista de Publicações'}
 
-class PublicaCreateView(generic.CreateView):
+class PublicaCreateView(LoginRequiredMixin, generic.CreateView):
     model = Publica
     form_class = PublicaForm
     template_name = 'catalog/publica_form.html'
@@ -130,7 +144,7 @@ class PublicaCreateView(generic.CreateView):
         'cancel_url': reverse_lazy('catalog:publica-list')
     }
 
-class PublicaDeleteView(generic.DeleteView):
+class PublicaDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Publica
     template_name = 'catalog/publica_confirm_delete.html'
     success_url = reverse_lazy('catalog:publica-list')
