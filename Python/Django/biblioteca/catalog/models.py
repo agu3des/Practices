@@ -1,4 +1,3 @@
-# filepath: c:\Users\anand\git\Practices\Python\Django\biblioteca\catalog\models.py
 from django.db import models
 
 class Editora(models.Model):
@@ -45,7 +44,6 @@ class Publica(models.Model):
         unique_together = ('livro', 'autor')
         verbose_name = 'Publicação'
         verbose_name_plural = 'Publicações'
-        # Garante que não haverá duplicação de relacionamento
         constraints = [
             models.UniqueConstraint(fields=['livro', 'autor'], name='unique_publicacao')
         ]

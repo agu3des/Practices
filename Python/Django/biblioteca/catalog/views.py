@@ -78,6 +78,12 @@ class LivroListView(generic.ListView):
     model = Livro
     template_name = 'catalog/livro_list.html'
     extra_context = {'title': 'Lista de Livros'}
+    paginate_by = 10 #paginação
+
+    def get_queryset(self):
+        # Otimização: select_related para FK e prefetch_related para M2M
+        # Evita centenas de consultas SQL desnecessárias no template
+        return Livro.objects.all().select_related('editora').prefetch_related('autores').order_by('-id')
 
 class LivroCreateView(generic.CreateView):
     model = Livro
