@@ -14,8 +14,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'widget_tweaks',  # Add this line
-    'catalog',  # nosso app
+    'widget_tweaks',
+    'catalog',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +63,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
+LOGIN_URL = 'admin:login'
 LOGIN_REDIRECT_URL = 'catalog:livro-list'
 LOGOUT_REDIRECT_URL = 'catalog:livro-list'
