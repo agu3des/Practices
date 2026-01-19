@@ -1,0 +1,479 @@
+{
+  "info": {
+    "name": "Biblioteca API - CRUD Autor e Editora",
+    "description": "Coleção de testes para a API REST de Autores e Editoras usando Django REST Framework",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "AUTORES",
+      "item": [
+        {
+          "name": "Listar todos os Autores",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/autores/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "autores", ""]
+            }
+          }
+        },
+        {
+          "name": "Criar novo Autor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Machado de Assis\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/autores/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "autores", ""]
+            }
+          }
+        },
+        {
+          "name": "Buscar Autor por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/autores/1/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "autores", "1", ""]
+            }
+          }
+        },
+        {
+          "name": "Atualizar Autor",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Machado de Assis (Atualizado)\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/autores/1/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "autores", "1", ""]
+            }
+          }
+        },
+        {
+          "name": "Atualizar Parcialmente Autor",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Machado de Assis (Revisado)\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/autores/1/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "autores", "1", ""]
+            }
+          }
+        },
+        {
+          "name": "Deletar Autor",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/autores/1/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "autores", "1", ""]
+            }
+          }
+        },
+        {
+          "name": "Buscar Autores por Nome",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/autores/?search=Machado",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "autores", ""],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "Machado"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Ordenar Autores por Nome",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/autores/?ordering=nome",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "autores", ""],
+              "query": [
+                {
+                  "key": "ordering",
+                  "value": "nome"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Ordenar Autores Decrescente",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/autores/?ordering=-nome",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "autores", ""],
+              "query": [
+                {
+                  "key": "ordering",
+                  "value": "-nome"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "EDITORAS",
+      "item": [
+        {
+          "name": "Listar todas as Editoras",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/editoras/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "editoras", ""]
+            }
+          }
+        },
+        {
+          "name": "Criar nova Editora",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Companhia das Letras\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/editoras/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "editoras", ""]
+            }
+          }
+        },
+        {
+          "name": "Buscar Editora por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/editoras/1/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "editoras", "1", ""]
+            }
+          }
+        },
+        {
+          "name": "Atualizar Editora",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Editora Saraiva\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/editoras/1/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "editoras", "1", ""]
+            }
+          }
+        },
+        {
+          "name": "Atualizar Parcialmente Editora",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Rocco\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/editoras/1/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "editoras", "1", ""]
+            }
+          }
+        },
+        {
+          "name": "Deletar Editora",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/editoras/1/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "editoras", "1", ""]
+            }
+          }
+        },
+        {
+          "name": "Buscar Editoras por Nome",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/editoras/?search=Companhia",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "editoras", ""],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "Companhia"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Ordenar Editoras por Nome",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/editoras/?ordering=nome",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "editoras", ""],
+              "query": [
+                {
+                  "key": "ordering",
+                  "value": "nome"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "LIVROS",
+      "item": [
+        {
+          "name": "Listar todos os Livros",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/livros/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "livros", ""]
+            }
+          }
+        },
+        {
+          "name": "Criar novo Livro",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ISBN\": \"9788535914849\",\n  \"titulo\": \"Dom Casmurro\",\n  \"publicacao\": \"1899-12-31\",\n  \"preco\": \"45.90\",\n  \"estoque\": 10,\n  \"editora\": 1\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/livros/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "livros", ""]
+            }
+          }
+        },
+        {
+          "name": "Buscar Livro por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/livros/1/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "livros", "1", ""]
+            }
+          }
+        },
+        {
+          "name": "Buscar Livros por Título",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/livros/?search=Dom+Casmurro",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "livros", ""],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "Dom Casmurro"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Ordenar Livros por Título",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/livros/?ordering=titulo",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "livros", ""],
+              "query": [
+                {
+                  "key": "ordering",
+                  "value": "titulo"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "PUBLICAÇÕES",
+      "item": [
+        {
+          "name": "Listar todas as Publicações",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/publicacoes/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "publicacoes", ""]
+            }
+          }
+        },
+        {
+          "name": "Vincular Autor a Livro",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"livro\": 1,\n  \"autor\": 1\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/publicacoes/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "publicacoes", ""]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

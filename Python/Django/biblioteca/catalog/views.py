@@ -3,8 +3,12 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from rest_framework import viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
 from .models import Editora, Autor, Livro, Publica
 from .forms import EditoraForm, AutorForm, LivroForm, PublicaForm
+from .serializers import AutorSerializer, EditoraSerializer, LivroSerializer, PublicaSerializer
 
 # Mixin personalizado para verificar permissão de Livro
 class LivroPermissionMixin(LoginRequiredMixin, PermissionRequiredMixin):
@@ -151,3 +155,37 @@ class PublicaDeleteView(generic.DeleteView):
     model = Publica
     template_name = 'catalog/publica_confirm_delete.html'
     success_url = reverse_lazy('catalog:publica-list')
+
+
+# --- API REST VIEWSETS ---
+
+class AutorViewSet(viewsets.ModelViewSet):
+    queryset = Autor.objects.all()
+    serializer_class = AutorSerializer
+    search_fields = ['nome']
+    ordering_fields = ['id', 'nome']
+    ordering = ['nome']
+
+
+class EditoraViewSet(viewsets.ModelViewSet):
+    queryset = Editora.objects.all()
+    serializer_class = EditoraSerializer
+    search_fields = ['nome']
+    ordering_fields = ['id', 'nome']
+    ordering = ['nome']
+
+
+class LivroViewSet(viewsets.ModelViewSet):
+    queryset = Livro.objects.all().select_related('editora').prefetch_related('autores')
+    serializer_class = LivroSerializer
+    search_fields = ['titulo', 'ISBN']
+    ordering_fields = ['id', 'titulo', 'publicacao', 'preco']
+    ordering = ['-publicacao']
+
+
+class PublicaViewSet(viewsets.ModelViewSet):
+    queryset = Publica.objects.all().select_related('livro', 'autor')
+    serializer_class = PublicaSerializer
+    search_fields = ['livro__titulo', 'autor__nome']
+    ordering_fields = ['id', 'livro__titulo', 'autor__nome']
+    ordering = ['livro__titulo']
