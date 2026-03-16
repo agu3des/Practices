@@ -33,6 +33,6 @@ git clean -n
 git clean -f
 git clean -fd
 git clean -fx
-
-
+git commit -m "Adiciona validação de formulário ref #42"
+git commit -m "Corrige erro de login (fixes #42)"
 

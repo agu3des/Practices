@@ -122,3 +122,9 @@ git push -u origin main
 
 `git clean -fx` 
 #para arquivos ignorados
+
+`git commit -m "Adiciona validação de formulário ref #42"`
+#associar commit a issue
+
+`git commit -m "Corrige erro de login (fixes #42)"`
+#associar commit a issue e fechá-la automaticamente
